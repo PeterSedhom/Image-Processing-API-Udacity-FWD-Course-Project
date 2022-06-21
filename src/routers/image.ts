@@ -33,6 +33,12 @@ router.get(
           .status(400)
           .send("Please enter both width and height dimensions to resize");
       } else {
+        if(isNaN(parseFloat(width as string))){
+          return res.status(400).send("Width is not valid");
+        }
+        if(isNaN(parseFloat(height as string))){
+          return res.status(400).send("height is not valid");
+        }
         const w: number = parseFloat(width as string);
         const h: number = parseFloat(height as string);
         const thumbnailPath = path.join(
